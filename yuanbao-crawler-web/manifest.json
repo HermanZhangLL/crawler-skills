@@ -1,0 +1,56 @@
+{
+  "name": "yuanbao-crawler-web",
+  "version": "1.0.0",
+  "owner": "Herman",
+  "updated_at": "2026-10-30",
+  "status": "active",
+  "maturity_tier": "production",
+  "lifecycle_stage": "production",
+  "context_budget_tier": "production",
+  "review_cadence": "monthly",
+  "skill_archetype": "production",
+  "target_platforms": [
+    "openai",
+    "claude",
+    "generic",
+    "agent-skills-compatible",
+    "vscode"
+  ],
+  "factory_components": [
+    "references",
+    "scripts",
+    "fixtures",
+    "templates",
+    "evals"
+  ],
+  "input_files": [
+    "questions.txt or questions.json",
+    "required standard inputs: repeat count, target entity, entity type, OpenCLI profile",
+    "optional YUANBAO_GROUP env: move each fresh conversation into a named 元宝对话分组 after share creation",
+    "optional brands.txt alias/competitor file",
+    "optional existing yuanbao-crawl.json",
+    "optional share_links.txt public share URLs (yb.tencent.com/s/<shareId>)"
+  ],
+  "output_contract": [
+    "yuanbao-crawl.json canonical evidence dataset",
+    "summary.json analysis metrics with target entity recognition and same-type competitor comparison",
+    "share.url / share_id / share.error per sample (auto public share creation, default enabled)",
+    "structured-data.md Markdown export of cleaned structured fields and analysis tables",
+    "field-maps/<question_id>-data-map.html per-question data field map (first valid sample)",
+    "structured-data.xlsx Excel workbook with the same structured sheets as the Markdown export",
+    "report.html Kami-styled visual report with overview, directory, metric explanations, entity classification, probability tables, target-vs-competitor module, clickable citations with unique compact URL labels, GEO trend projections, and capped detail lists",
+    "raw/*.json and logs/*.log per-sample evidence",
+    "conversation.url per-sample audit link"
+  ],
+  "rollback_boundary": "The skill writes local artifacts only to the selected run output directory. Fresh crawling creates 腾讯元宝 web conversations in the connected browser; it does not modify external source projects.",
+  "local_dependencies": [
+    "Node.js 21+ for fresh crawling; Node.js 18+ for analysis-only and share-link parsing",
+    "Python 3.10+",
+    "OpenCLI CLI 1.8.6+",
+    "OpenCLI Browser Bridge connected profile",
+    "Auto-creates a public share link (page share API, with UI click/clipboard fallback) and parses the full share page",
+    "Logged-in 腾讯元宝 web session for fresh crawling",
+    "Bundled scripts/yuanbao_browser_crawl.mjs using the OpenCLI yuanbao site adapter",
+    "Bundled scripts/analyze_yuanbao_share.mjs using Node fetch for public share pages"
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "skill_id": "doubao-crawler-web",
+  "required_artifacts": [
+    {
+      "path": "doubao-crawl.json",
+      "description": "Canonical crawl dataset compatible with doubao-crawler-web/v1."
+    },
+    {
+      "path": "question-links.csv",
+      "description": "Question -> sample -> share link registry with asked/completed/fetched timestamps."
+    },
+    {
+      "path": "full-sample-data.csv",
+      "description": "One row per sample with the full parsed record: answer, brief, suggest questions, search blocks, references, timing, raw/log paths."
+    },
+    {
+      "path": "share-links.xlsx",
+      "description": "Question -> public thread share link workbook with 分享链接 and 按问题汇总 sheets."
+    },
+    {
+      "path": "report/summary.json",
+      "description": "Machine-readable metrics, including mobile_evidence when Android/Appium data is present."
+    },
+    {
+      "path": "report/structured-data.md",
+      "description": "Structured Markdown export for review and handoff."
+    },
+    {
+      "path": "report/structured-data.xlsx",
+      "description": "Structured Excel workbook matching the Markdown tables."
+    },
+    {
+      "path": "report/report.html",
+      "description": "Kami-styled visual GEO report."
+    }
+  ],
+  "mobile_optional_artifacts": [
+    {
+      "path": "screenshots/",
+      "description": "Android screenshots for UI evidence."
+    },
+    {
+      "path": "xml/",
+      "description": "Android page_source XML snapshots."
+    },
+    {
+      "path": "raw/*.json",
+      "description": "Per-sample raw capture records."
+    },
+    {
+      "path": "logs/*.log",
+      "description": "Per-sample execution logs."
+    }
+  ],
+  "offline_verification": [
+    "bash scripts/run-tests.sh"
+  ]
+}

@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>__PAGE_TITLE__</title>
+<style>
+:root{--bg:#f5f6f3;--surface:#fff;--ink:#1c1d1f;--muted:#676c70;--line:#e2e4df;--line2:#c9ccc5;--accent:#0f766e;--accent-soft:#e6f2f0;--warm:#b45309;--warm-soft:#fdf1e3;--code:#3f4a48}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif;letter-spacing:0}
+a{color:#155e75;text-decoration:none;word-break:break-all}
+a:hover{text-decoration:underline}
+header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line)}
+.bar{max-width:1280px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.brand{font-weight:700;font-size:16px;white-space:nowrap}
+.brand small{display:block;font-weight:400;color:var(--muted);font-size:12px}
+.links{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+.pill{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line2);background:var(--surface);border-radius:8px;padding:5px 10px;font-size:12px;color:var(--muted)}
+.pill b{color:var(--ink);font-weight:600}
+.wrap{max-width:1280px;margin:0 auto;padding:22px 20px 60px}
+.hero{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:18px 20px;margin-bottom:16px}
+.hero h1{margin:0 0 6px;font-size:22px;line-height:1.3}
+.hero p{margin:4px 0;color:var(--muted);max-width:1000px}
+.sources{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px;margin-top:14px}
+.source{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:13px}
+.source .k{color:var(--muted);font-size:12px;margin-bottom:2px}
+.source .v{word-break:break-all}
+.tag{display:inline-block;margin-left:6px;padding:1px 7px;border-radius:999px;font-size:11px;font-weight:600}
+.tag.ok{background:var(--accent-soft);color:var(--accent)}
+.tag.no{background:var(--warm-soft);color:var(--warm)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:16px 0}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+.stat b{display:block;font-size:20px;line-height:1.2}
+.stat span{color:var(--muted);font-size:12px}
+nav.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0;position:sticky;top:57px;z-index:10;background:var(--bg);padding:6px 0}
+nav.tabs button{border:1px solid var(--line2);background:var(--surface);color:var(--ink);border-radius:8px;padding:8px 14px;font-size:13px;cursor:pointer}
+nav.tabs button.active{background:var(--accent);border-color:var(--accent);color:#fff}
+section.tab{display:none}
+section.tab.active{display:block}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px 18px;margin-bottom:16px}
+.panel h2{margin:0 0 10px;font-size:18px}
+.panel h3{margin:22px 0 8px;font-size:15px;border-bottom:1px solid var(--line);padding-bottom:6px}
+.panel h3:first-child{margin-top:0}
+.panel p{margin:6px 0}
+.muted{color:var(--muted)}
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px}
+table{border-collapse:collapse;width:100%;min-width:860px;font-size:13px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:#f2f3f0;font-weight:600;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+.fld{font-family:Consolas,"Courier New",monospace;font-size:12px;color:var(--code);word-break:break-all}
+.val{word-break:break-word}
+.null{color:#a3a8a3;font-style:italic}
+.msg{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:12px 14px;margin-bottom:12px}
+.msg .meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;font-size:12px;color:var(--muted)}
+.msg .meta b{color:var(--ink)}
+.msg.user{border-left:4px solid var(--warm)}
+.msg.assistant{border-left:4px solid var(--accent)}
+.answer{white-space:normal;line-height:1.7}
+.cite{display:inline-block;min-width:22px;padding:1px 5px;margin:0 2px;border:1px solid var(--accent);border-radius:6px;background:var(--accent-soft);color:var(--accent);font-size:11px;font-weight:700;cursor:pointer;text-align:center}
+.cite:hover{background:var(--accent);color:#fff}
+.ref-row.flash{outline:3px solid var(--warm);outline-offset:2px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px}
+.card{border:1px solid var(--line);border-radius:8px;background:var(--surface);padding:12px 14px}
+.card h4{margin:0 0 6px;font-size:14px}
+.card ul{margin:6px 0 0;padding-left:18px}
+.bar-row{display:grid;grid-template-columns:110px 1fr 52px;gap:8px;align-items:center;font-size:13px;margin-bottom:6px}
+.bar-track{background:#eceeea;border-radius:8px;height:16px;overflow:hidden}
+.bar-fill{height:100%;background:var(--accent);border-radius:8px}
+.bar-row .n{text-align:right;color:var(--muted)}
+pre.json{background:#101412;color:#d7e0da;border-radius:8px;padding:14px;overflow:auto;font:12px/1.5 Consolas,"Courier New",monospace;max-height:70vh}
+.copy{float:right;margin:0 0 8px 8px;border:1px solid var(--line2);background:var(--surface);border-radius:8px;padding:5px 10px;font-size:12px;cursor:pointer}
+.note{background:var(--warm-soft);border:1px solid #e7c9a0;border-radius:8px;padding:10px 14px;font-size:13px;color:#6b3a00}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-top:10px}
+footer{margin-top:24px;color:var(--muted);font-size:12px}
+@media (max-width:760px){.bar{padding:10px 14px}.links{margin-left:0;width:100%}header{position:static}nav.tabs{position:sticky;top:0}.hero h1{font-size:19px}.stat b{font-size:18px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="bar">
+    <div class="brand">DeepSeek 分享链接 · 数据字段地图<small>字段 → 示例值 → 分析方法</small></div>
+    <div class="links">
+      <span class="pill">示例分享 <b id="pillShareId">-</b></span>
+      <span class="pill">消息 <b id="pillMsgs">-</b></span>
+      <span class="pill">引用 <b id="pillRefs">-</b></span>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="hero">
+    <h1>一份 DeepSeek 分享链接里到底有哪些数据</h1>
+    <p>本页以你提供的分享链接为例，把公开分享接口能取到的每一个字段、它在本次回答中的具体内容，以及后续可以怎么用于分析，一一对应展示。所有数据都来自公开接口，不需要登录。</p>
+    <div class="sources">
+      <div class="source"><div class="k">分享链接（公开可解析）</div><div class="v"><a id="shareLink" href="#" target="_blank" rel="noopener">-</a><span class="tag ok">已取到</span></div></div>
+      <div class="source"><div class="k">生成方式</div><div class="v">浏览器提问完成后自动创建并拉取公开分享接口</div></div>
+      <div class="source"><div class="k">分享数据接口（公开）</div><div class="v"><span class="fld" id="apiEndpoint">GET /api/v0/share/content?share_id=-</span></div></div>
+    </div>
+    <div class="stats">
+      <div class="stat"><b id="statMsgs">-</b><span>消息数</span></div>
+      <div class="stat"><b id="statRefs">-</b><span>引用信源</span></div>
+      <div class="stat"><b id="statDomains">-</b><span>唯一域名</span></div>
+      <div class="stat"><b id="statQueries">-</b><span>搜索子查询</span></div>
+      <div class="stat"><b id="statTokens">-</b><span>累计 Token</span></div>
+      <div class="stat"><b id="statTime">-</b><span>分享导出时间</span></div>
+    </div>
+  </div>
+  <nav class="tabs">
+    <button class="active" data-tab="map">字段地图</button>
+    <button data-tab="answer">回答正文映射</button>
+    <button data-tab="refs">引用明细</button>
+    <button data-tab="derive">推导分析</button>
+    <button data-tab="raw">原始 JSON</button>
+  </nav>
+  <section class="tab active" id="tab-map">
+    <div class="panel">
+      <h2>一、会话级字段</h2>
+      <p class="muted">这些字段描述“这条分享本身”是什么，决定它能否作为一次独立样本进入测评库。</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th style="width:110px">数据来源</th><th style="width:180px">字段</th><th>含义</th><th style="width:300px">本次示例的具体内容</th><th>如何分析 / 用途</th></tr></thead>
+        <tbody>
+          <tr><td>分享接口</td><td class="fld">share_id</td><td>分享链接唯一标识</td><td class="val">1zoj4pacya6ylyseci</td><td>作为样本 ID 或去重键；同一个分享内容不变</td></tr>
+          <tr><td>分享接口</td><td class="fld">biz_data.title</td><td>分享标题</td><td class="val">Shared Conversation</td><td>默认标题，无法作为主题识别；需用首条用户消息识别主题</td></tr>
+          <tr><td>分享接口</td><td class="fld">biz_data.model_type</td><td>产品模型类型</td><td class="val">default</td><td>非常粗，只能确认是“默认模型”；不能据此判断 V4-Pro / Flash 版本</td></tr>
+          <tr><td>分享接口</td><td class="fld">biz_data.messages[]</td><td>本次分享包含的消息</td><td class="val">2 条：USER + ASSISTANT</td><td>决定能分析几轮；本例是单轮问答，适合做单次 GEO 样本</td></tr>
+          <tr><td>页面 HTML</td><td class="fld">og:description</td><td>分享预览摘要</td><td class="val">回答正文前约 200 字（含 [citation:1][citation:8]）</td><td>可快速预览，但内容被截断；正式分析要用接口全文</td></tr>
+          <tr><td>页面 HTML</td><td class="fld">meta robots</td><td>搜索引擎收录控制</td><td class="val">noindex, nofollow</td><td>说明分享页不会进入搜索引擎索引，不能当成公开可被搜索到的页面</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+    <div class="panel">
+      <h2>二、消息级字段</h2>
+      <p class="muted">每个消息对象都带状态、开关和用量信息；这些字段回答“这条回答是怎么生成的”。</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th style="width:150px">字段</th><th>含义</th><th style="width:290px">用户消息（示例值）</th><th style="width:290px">助手回答（示例值）</th><th>如何分析 / 用途</th></tr></thead>
+        <tbody>
+          <tr><td class="fld">role</td><td>消息角色</td><td class="val">USER</td><td class="val">ASSISTANT</td><td>区分提问与回答，是结构化解析的第一层</td></tr>
+          <tr><td class="fld">message_id / parent_id</td><td>消息 ID 与父消息</td><td class="val">1 / null</td><td class="val">2 / 1</td><td>重建对话顺序和树状关系；多轮时按此排序</td></tr>
+          <tr><td class="fld">content</td><td>消息正文</td><td class="val">深圳园消防排烟上下水强弱电改造能不能做，有没有指定施工方</td><td class="val">完整 Markdown 回答，含 12 个引用标记（见“回答正文映射”页）</td><td>核心文本；做实体、排名、情感、引用位置分析</td></tr>
+          <tr><td class="fld">accumulated_token_usage</td><td>截至该消息累计 token</td><td class="val">48</td><td class="val">426</td><td>估算单次问答成本；侧面反映回答长度</td></tr>
+          <tr><td class="fld">search_enabled</td><td>是否开启联网搜索</td><td class="val">true</td><td class="val">true</td><td>判断是否属于“AI 搜索回答”；未开启时无引用，只能做纯模型文本分析</td></tr>
+          <tr><td class="fld">thinking_enabled</td><td>是否开启深度思考</td><td class="val">false</td><td class="val">false</td><td>区分思考模式；思考模式回答结构不同、可能更长</td></tr>
+          <tr><td class="fld">thinking_content / thinking_elapsed_secs</td><td>思考过程与耗时</td><td class="val">null / null</td><td class="val">null / null</td><td>本例未开启故无数据；开启时可分析推理过程</td></tr>
+          <tr><td class="fld">status</td><td>消息完成状态</td><td class="val">FINISHED</td><td class="val">FINISHED</td><td>只把 FINISHED 且正文非空的样本视为有效样本</td></tr>
+          <tr><td class="fld">incomplete_message</td><td>是否生成中断</td><td class="val">null</td><td class="val">null</td><td>非空表示回答被截断，需要标记为弱证据</td></tr>
+          <tr><td class="fld">inserted_at</td><td>时间戳</td><td class="val">1785486329.719（2026-07-31 16:25:29 +08）</td><td class="val">1785486329.714（同一时刻）</td><td>分享接口的时间更接近“导出/落库时间”，不建议当生成时间</td></tr>
+          <tr><td class="fld">search_status</td><td>联网搜索状态</td><td class="val"><span class="null">null</span></td><td class="val">FINISHED</td><td>确认引用是否采集完成；未完成时引用不可靠</td></tr>
+          <tr><td class="fld">search_results[]</td><td>引用信源列表</td><td class="val"><span class="null">null</span></td><td class="val">12 条（见“引用明细”页）</td><td>信源分析的原始数据</td></tr>
+          <tr><td class="fld">files[] / feedback / tips[]</td><td>附件、反馈、提示</td><td class="val">[] / null / []</td><td class="val">[] / null / []</td><td>本例为空；有附件需单独处理，有反馈可做答案质量标注</td></tr>
+          <tr><td class="fld">model</td><td>具体模型</td><td class="val"><span class="null">空字符串</span></td><td class="val"><span class="null">空字符串</span></td><td>分享接口未暴露具体模型版本，无法从这份数据判断模型</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+    <div class="panel">
+      <h2>三、引用级字段</h2>
+      <p class="muted">这是 GEO 分析最重要的一层：回答引了哪些网页、引用顺序如何、来源是什么。</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th style="width:150px">字段</th><th>含义</th><th style="width:300px">本次示例（取前 3 条）</th><th>如何分析 / 用途</th></tr></thead>
+        <tbody>
+          <tr><td class="fld">cite_index</td><td>引用编号</td><td class="val">1 / 2 / 3</td><td>和正文 [citation:N] 一一对应；编号越小越早被引用，可做“引用位置”分析</td></tr>
+          <tr><td class="fld">url</td><td>信源地址</td><td class="val">zcpt.szcg.cn/announcement/32994；163.com；tianyancha.com/company/3164869668</td><td>去重、算唯一域名、判断来源类型、核验链接可访问性</td></tr>
+          <tr><td class="fld">title</td><td>页面标题</td><td class="val">大新新美工业园改造项目 EPC…；喜提 12 亿！中建三局…；安成（深圳）消防工程有限公司 - 企业工商信息查询</td><td>判断信源主题与品牌相关性；统计高频标题、标题长度和意图</td></tr>
+          <tr><td class="fld">snippet</td><td>摘要片段</td><td class="val">资金来源…通风系统…防排烟工程…</td><td>判断模型引用该信源的用途（资质、公司、项目、法规等）</td></tr>
+          <tr><td class="fld">published_at</td><td>信源发布时间</td><td class="val">2024-07-13 / 2026-04-08 / 2026-05-10</td><td>计算信源新旧度，识别是否依赖过期信息</td></tr>
+          <tr><td class="fld">site_name</td><td>站点显示名</td><td class="val">特区建工 / 网易手机 / null</td><td>识别媒体、百科、政务、工商平台等；null 时用域名兜底</td></tr>
+          <tr><td class="fld">site_icon</td><td>站点图标</td><td class="val">cdn.deepseek.com/site-icons/…</td><td>前端展示用；也可辅助站点识别</td></tr>
+          <tr><td class="fld">query_indexes[]</td><td>来自第几个搜索子查询</td><td class="val">[0] / [1] / [2]</td><td>还原问题被拆成几个子查询，以及每个子查询贡献多少信源；分析检索策略</td></tr>
+          <tr><td class="fld">domain（推导）</td><td>从 URL 提取的主域名</td><td class="val">zcpt.szcg.cn / 163.com / tianyancha.com</td><td>唯一域名统计、渠道分类、品牌官网出现次数等</td></tr>
+          <tr><td class="fld">channel（推导）</td><td>信源渠道分类</td><td class="val">官方招标 / 媒体 / 企业工商</td><td>判断品牌信息通过哪些渠道被 AI 引用</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+    <div class="panel">
+      <h2>四、分享接口提取不到的信息</h2>
+      <p class="muted">明确边界，避免把这份数据误当成完整会话证据。</p>
+      <table>
+        <thead><tr><th style="width:230px">缺失项</th><th>影响</th></tr></thead>
+        <tbody>
+          <tr><td>具体模型版本（V4-Pro/Flash 等）</td><td>无法判断回答来自哪个模型，横向对比时要统一口径</td></tr>
+          <tr><td>真实生成时间</td><td>inserted_at 更接近分享导出时间，无法做精确的时间序列分析</td></tr>
+          <tr><td>搜索子查询原文</td><td>只有 query_indexes 编号，不知道模型实际拆成了哪些关键词</td></tr>
+          <tr><td>账号、会话 ID、地区等</td><td>无法做用户画像或地区差异分析</td></tr>
+          <tr><td>未分享的其他轮次</td><td>只代表被分享出的那部分对话</td></tr>
+          <tr><td>多次重复采样</td><td>单条分享只有一次回答，无法计算 Top1/Top3 概率，需要批量重复采样</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <section class="tab" id="tab-answer">
+    <div class="panel">
+      <h2>回答正文与引用的一一映射</h2>
+      <p class="muted">点击回答里的 <span class="cite">[N]</span>，会自动跳到引用明细页对应的信源行并高亮，直观看到“哪句话引用了哪个网页”。</p>
+      <div id="msgList"></div>
+      <div class="legend"><span>■ 用户消息</span><span>■ 助手回答</span><span>引用编号 = 信源明细页的编号</span></div>
+    </div>
+  </section>
+  <section class="tab" id="tab-refs">
+    <div class="panel">
+      <h2><span id="refCountLabel">0</span> 条引用信源明细</h2>
+      <p class="muted">每条引用按 cite_index 排序，展示编号、站点、域名、标题、发布时间、所属子查询和摘要。</p>
+      <div class="table-wrap"><table id="refTable">
+        <thead><tr><th>#</th><th>站点</th><th>域名</th><th>标题</th><th>发布时间</th><th>子查询</th><th>摘要片段</th><th>链接</th></tr></thead>
+        <tbody></tbody>
+      </table></div>
+    </div>
+  </section>
+  <section class="tab" id="tab-derive">
+    <div class="panel">
+      <h2>从这份数据可以推导出的分析结果</h2>
+      <p class="muted">这些不是接口直接给的字段，而是基于上面字段计算出来的、可直接用于 GEO 评估的指标。</p>
+      <div class="grid2">
+        <div class="card"><h4>信源域名分布</h4><div id="domainBars"></div></div>
+        <div class="card"><h4>信源渠道分类</h4><div id="channelBars"></div></div>
+        <div class="card"><h4>子查询贡献分布</h4><div id="queryBars"></div><p class="muted" id="queryNote" style="margin-top:8px"></p></div>
+        <div class="card"><h4>回答中出现的实体</h4><ul id="entityList"></ul><p class="muted" style="margin-top:6px">本例为“公司实体”，可直接用 deepseek-crawler-web 的实体识别口径继续做竞品分析。</p></div>
+      </div>
+      <div class="grid2" style="margin-top:12px">
+        <div class="card"><h4>结论 → 引用映射</h4><ul id="claimMap"></ul></div>
+        <div class="card"><h4>信源新旧度</h4><div id="recencyBars"></div><p class="muted" style="margin-top:8px">判断模型引用是否偏旧；本例大部分信源集中在 2025-2026 年。</p></div>
+      </div>
+    </div>
+    <div class="note">单条分享 = 一次样本，只能描述“这一次回答引用了什么”；不能直接得出“品牌被 DeepSeek 提及的概率”。要得到 Top1/Top3、提及率等指标，需要对同一问题做多轮重复采样，再按 deepseek-crawler-web 的指标口径聚合。</div>
+  </section>
+  <section class="tab" id="tab-raw">
+    <div class="panel">
+      <h2>分享接口原始 JSON</h2>
+      <button class="copy" onclick="copyRaw()">复制 JSON</button>
+      <pre class="json" id="rawJson"></pre>
+    </div>
+  </section>
+  <footer>数据来源：公开分享接口 <span class="fld">/api/v0/share/content</span>（无需登录）；本页为静态离线文件，数据已内嵌，可直接用浏览器打开。回答正文、引用标题与摘要展示已转为简体，原始 JSON 保留源站原文。</footer>
+</div>
+<script type="application/json" id="share-data-display">
+__SHARE_DATA_JSON_DISPLAY__
+</script>
+<script type="application/json" id="share-data-raw">
+__SHARE_DATA_JSON_RAW__
+</script>
+<script>
+(function(){
+  var raw = document.getElementById('share-data-raw').textContent;
+  var data = JSON.parse(document.getElementById('share-data-display').textContent);
+  var rawData = JSON.parse(raw);
+  var biz = data.data.biz_data;
+  var messages = biz.messages;
+  var refs = (messages.find(function(m){return m.role === 'ASSISTANT' && m.search_results}) || {}).search_results || [];
+  var shareId = '__SHARE_ID__';
+  var shareUrl = shareId ? 'https://chat.deepseek.com/share/' + shareId : '';
+  function setText(id, value){ var el = document.getElementById(id); if (el) el.textContent = String(value == null ? '-' : value); }
+  setText('pillShareId', shareId || '-');
+  setText('pillMsgs', messages.length);
+  setText('pillRefs', refs.length);
+  if (document.getElementById('shareLink')) { document.getElementById('shareLink').href = shareUrl; document.getElementById('shareLink').textContent = shareUrl || '-'; }
+  if (document.getElementById('apiEndpoint')) document.getElementById('apiEndpoint').textContent = shareId ? 'GET /api/v0/share/content?share_id=' + shareId : '';
+  setText('refCountLabel', refs.length);
+  var uniqueDomains = new Set(refs.map(function(r){ return domain(r.url); }).filter(Boolean)).size;
+  var queryIndexes = new Set();
+  refs.forEach(function(r){ (r.query_indexes || []).forEach(function(q){ queryIndexes.add(q); }); });
+  var tokenUsage = messages.reduce(function(s,m){ return s + Number(m.accumulated_token_usage || 0); }, 0);
+  var lastTs = null;
+  for (var i = messages.length - 1; i >= 0; i -= 1) { if (messages[i].inserted_at) { lastTs = messages[i].inserted_at; break; } }
+  setText('statMsgs', messages.length);
+  setText('statRefs', refs.length);
+  setText('statDomains', uniqueDomains);
+  setText('statQueries', queryIndexes.size);
+  setText('statTokens', tokenUsage);
+  setText('statTime', lastTs ? new Date(lastTs * 1000).toISOString().slice(0, 10) : '-');
+  if (document.getElementById('queryNote')) {
+    var sorted = Array.from(queryIndexes).sort(function(a,b){ return a - b; });
+    document.getElementById('queryNote').textContent = '模型把问题拆成 ' + String(sorted.length || 0) + ' 个子查询，引用按子查询编号分布。';
+  }
+
+  function esc(v){return String(v == null ? '' : v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  function domain(u){try{return new URL(u).hostname.replace(/^www\./,'');}catch(e){return '';}}
+  function fmtTs(ts){ if(ts == null) return '<span class="null">null</span>'; var d=new Date(ts*1000); var p=function(n){return String(n).padStart(2,'0');}; return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate())+' '+p(d.getHours())+':'+p(d.getMinutes())+':'+p(d.getSeconds()); }
+  function fmtDate(ts){ if(ts == null) return '<span class="null">—</span>'; var d=new Date(ts*1000); var p=function(n){return String(n).padStart(2,'0');}; return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate()); }
+  function renderAnswer(content){
+    var html = esc(content);
+    html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    html = html.replace(/\[citation:(\d+)\]/g, function(m,n){
+      return '<button class="cite" data-cite="'+n+'" title="跳转信源 #'+n+'" onclick="focusRef('+n+')">'+n+'</button>';
+    });
+    html = html.replace(/\n/g, '<br>');
+    return html;
+  }
+  var msgList = document.getElementById('msgList');
+  messages.forEach(function(m){
+    var div = document.createElement('div');
+    div.className = 'msg ' + (m.role === 'USER' ? 'user' : 'assistant');
+    var meta = '<div class="meta">'
+      + '<span>角色 <b>'+m.role+'</b></span>'
+      + '<span>消息ID <b>'+m.message_id+'</b></span>'
+      + '<span>Token <b>'+m.accumulated_token_usage+'</b></span>'
+      + '<span>联网搜索 <b>'+m.search_enabled+'</b></span>'
+      + '<span>深度思考 <b>'+m.thinking_enabled+'</b></span>'
+      + '<span>状态 <b>'+m.status+'</b></span>'
+      + '<span>时间 <b>'+fmtTs(m.inserted_at)+'</b></span>'
+      + '</div>';
+    var body = m.role === 'ASSISTANT' ? renderAnswer(m.content) : esc(m.content);
+    div.innerHTML = meta + '<div class="answer">' + body + '</div>';
+    msgList.appendChild(div);
+  });
+  var tbody = document.querySelector('#refTable tbody');
+  refs.forEach(function(r){
+    var tr = document.createElement('tr');
+    tr.className = 'ref-row';
+    tr.id = 'ref-' + r.cite_index;
+    tr.innerHTML = '<td><b>'+r.cite_index+'</b></td>'
+      + '<td>'+(r.site_name ? esc(r.site_name) : '<span class="null">null</span>')+'</td>'
+      + '<td class="fld">'+esc(domain(r.url))+'</td>'
+      + '<td>'+esc(r.title)+'</td>'
+      + '<td>'+fmtDate(r.published_at)+'</td>'
+      + '<td>'+esc(r.query_indexes.join(','))+'</td>'
+      + '<td class="val">'+esc((r.snippet||'').slice(0,120))+(r.snippet && r.snippet.length>120?'…':'')+'</td>'
+      + '<td><a href="'+esc(r.url)+'" target="_blank" rel="noopener">打开</a></td>';
+    tbody.appendChild(tr);
+  });
+  function barChart(elId, rows){
+    var el = document.getElementById(elId);
+    var max = 1;
+    rows.forEach(function(r){ if(r.v > max) max = r.v; });
+    el.innerHTML = rows.map(function(r){
+      return '<div class="bar-row"><span>'+esc(r.k)+'</span><div class="bar-track"><div class="bar-fill" style="width:'+Math.round(r.v/max*100)+'%"></div></div><span class="n">'+r.v+'</span></div>';
+    }).join('');
+  }
+  var domainCount = {};
+  refs.forEach(function(r){ var d = domain(r.url); domainCount[d] = (domainCount[d]||0)+1; });
+  barChart('domainBars', Object.keys(domainCount).map(function(k){return {k:k, v:domainCount[k]};}).sort(function(a,b){return b.v-a.v;}));
+  function channel(d){
+    if(/tianyancha|qcc/.test(d)) return '企业工商';
+    if(/baike/.test(d)) return '百科';
+    if(/163\.com/.test(d)) return '媒体';
+    if(/szcg\.cn/.test(d)) return '官方招标';
+    return '其他';
+  }
+  var channelCount = {};
+  refs.forEach(function(r){ var c = channel(domain(r.url)); channelCount[c] = (channelCount[c]||0)+1; });
+  barChart('channelBars', Object.keys(channelCount).map(function(k){return {k:k, v:channelCount[k]};}).sort(function(a,b){return b.v-a.v;}));
+  var queryCount = {};
+  refs.forEach(function(r){ r.query_indexes.forEach(function(q){ queryCount['子查询 '+q] = (queryCount['子查询 '+q]||0)+1; }); });
+  barChart('queryBars', Object.keys(queryCount).map(function(k){return {k:k, v:queryCount[k]};}).sort(function(a,b){return a.k.localeCompare(b.k, 'zh', {numeric:true});}));
+  var entities = (function(){
+    var out = [];
+    var assistant = messages.find(function(m){ return m.role === 'ASSISTANT'; }) || {};
+    var text = String(assistant.content || '');
+    var re = /\*+\s*\*\*([^*]+)\*\*/g;
+    var m;
+    while ((m = re.exec(text)) && out.length < 12) {
+      var name = m[1].trim();
+      if (name && name.length >= 2 && out.indexOf(name) === -1) out.push(name);
+    }
+    return out;
+  })();
+  document.getElementById('entityList').innerHTML = entities.map(function(e){return '<li>'+esc(e)+'</li>';}).join('');
+  var claims = (function(){
+    var assistant = messages.find(function(m){ return m.role === 'ASSISTANT'; }) || {};
+    var text = String(assistant.content || '');
+    var blocks = text.split(/\n{2,}/);
+    var out = [];
+    for (var i = 0; i < blocks.length && out.length < 10; i += 1) {
+      var block = blocks[i];
+      var nums = [];
+      var re = /\[citation:(\d+)\]/g;
+      var m;
+      while ((m = re.exec(block))) nums.push(Number(m[1]));
+      if (!nums.length) continue;
+      var plain = block.replace(/\*\*([^*]+)\*\*/g, '$1').replace(/\[citation:\d+\]/g, '').replace(/\s+/g, ' ').trim();
+      if (plain.length > 90) plain = plain.slice(0, 90) + '…';
+      out.push([plain, nums]);
+    }
+    return out;
+  })();
+  document.getElementById('claimMap').innerHTML = claims.map(function(c){
+    return '<li>'+esc(c[0])+' → ' + c[1].map(function(n){return '<button class="cite" data-cite="'+n+'" onclick="focusRef('+n+')">'+n+'</button>';}).join('') + '</li>';
+  }).join('');
+  var now = Date.now();
+  var buckets = {'近1年':0,'近2年':0,'2年以上':0,'无时间':0};
+  refs.forEach(function(r){
+    if(!r.published_at){ buckets['无时间']++; return; }
+    var age = now - r.published_at*1000;
+    if(age <= 365*86400000) buckets['近1年']++;
+    else if(age <= 2*365*86400000) buckets['近2年']++;
+    else buckets['2年以上']++;
+  });
+  barChart('recencyBars', Object.keys(buckets).map(function(k){return {k:k, v:buckets[k]};}).sort(function(a,b){return a.k.localeCompare(b.k,'zh');}));
+  document.getElementById('rawJson').textContent = JSON.stringify(rawData, null, 2);
+  var tabs = document.querySelectorAll('nav.tabs button');
+  tabs.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      tabs.forEach(function(b){ b.classList.remove('active'); });
+      document.querySelectorAll('section.tab').forEach(function(s){ s.classList.remove('active'); });
+      btn.classList.add('active');
+      document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+      window.scrollTo({top:0, behavior:'smooth'});
+    });
+  });
+  window.focusRef = function(n){
+    var row = document.getElementById('ref-' + n);
+    if(!row) return;
+    document.querySelector('button[data-tab="refs"]').click();
+    setTimeout(function(){
+      row.scrollIntoView({behavior:'smooth', block:'center'});
+      row.classList.remove('flash');
+      void row.offsetWidth;
+      row.classList.add('flash');
+    }, 60);
+  };
+  window.copyRaw = function(){
+    var text = document.getElementById('rawJson').textContent;
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){ alert('已复制'); });
+    } else {
+      var ta = document.createElement('textarea');
+      ta.value = text; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove(); alert('已复制');
+    }
+  };
+})();
+</script>
+</body>
+</html>

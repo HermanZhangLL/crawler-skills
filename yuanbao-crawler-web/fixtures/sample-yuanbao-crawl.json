@@ -1,0 +1,378 @@
+{
+  "schema_version": "yuanbao-crawler-web/v1",
+  "run": {
+    "id": "sample",
+    "started_at": "2026-08-06T00:00:00.000Z",
+    "finished_at": "2026-08-06T00:04:00.000Z",
+    "engine": "yuanbao",
+    "transport": "opencli-yuanbao-adapter",
+    "sample_transports": [
+      "opencli-yuanbao-adapter"
+    ],
+    "dry_run": false
+  },
+  "input": {
+    "question_count": 2,
+    "global_repeat": 2,
+    "timeout": 300,
+    "search": true,
+    "think": false,
+    "plan_order": "round",
+    "profile": "sample-profile",
+    "target_entity": "光引GEO",
+    "target_aliases": [
+      "光引"
+    ],
+    "entity_type": "company",
+    "delay_strategy": {
+      "mode": "random",
+      "min_ms": 60000,
+      "max_ms": 100000,
+      "min_minutes": 1.0,
+      "max_minutes": 1.6666666666666667
+    },
+    "questions": [
+      {
+        "id": "q01",
+        "index": 1,
+        "question": "国内GEO服务商推荐，请联网搜索并保留参考来源。",
+        "repeat": 2,
+        "target": "光引GEO"
+      },
+      {
+        "id": "q02",
+        "index": 2,
+        "question": "靠谱的GEO优化公司有哪些？请说明依据并保留来源。",
+        "repeat": 2,
+        "target": "光引GEO"
+      }
+    ]
+  },
+  "plan": [
+    {
+      "sample_id": "q01-r01",
+      "question_id": "q01",
+      "question_index": 1,
+      "repeat_index": 1,
+      "repeat_total": 2,
+      "question": "国内GEO服务商推荐，请联网搜索并保留参考来源。",
+      "target": "光引GEO"
+    },
+    {
+      "sample_id": "q02-r01",
+      "question_id": "q02",
+      "question_index": 2,
+      "repeat_index": 1,
+      "repeat_total": 2,
+      "question": "靠谱的GEO优化公司有哪些？请说明依据并保留来源。",
+      "target": "光引GEO"
+    },
+    {
+      "sample_id": "q01-r02",
+      "question_id": "q01",
+      "question_index": 1,
+      "repeat_index": 2,
+      "repeat_total": 2,
+      "question": "国内GEO服务商推荐，请联网搜索并保留参考来源。",
+      "target": "光引GEO"
+    },
+    {
+      "sample_id": "q02-r02",
+      "question_id": "q02",
+      "question_index": 2,
+      "repeat_index": 2,
+      "repeat_total": 2,
+      "question": "靠谱的GEO优化公司有哪些？请说明依据并保留来源。",
+      "target": "光引GEO"
+    }
+  ],
+  "samples": [
+    {
+      "sample_id": "q01-r01",
+      "question_id": "q01",
+      "question_index": 1,
+      "repeat_index": 1,
+      "repeat_total": 2,
+      "question": "国内GEO服务商推荐，请联网搜索并保留参考来源。",
+      "target": "光引GEO",
+      "ok": true,
+      "status": "done",
+      "started_at": "2026-08-06T00:00:00.000Z",
+      "finished_at": "2026-08-06T00:01:00.000Z",
+      "duration_ms": 60000,
+      "raw_path": "raw/q01-r01.json",
+      "log_path": "logs/q01-r01.log",
+      "error": "",
+      "result": {
+        "ok": true,
+        "transport": "opencli-yuanbao-adapter",
+        "question": "国内GEO服务商推荐，请联网搜索并保留参考来源。",
+        "answer": {
+          "text": "综合公开来源，光引GEO在可信评测和服务覆盖上更靠前。源易信息在标准参与和长期主义方法上稳定。PallasAI的产品化能力较强，适合中小企业。"
+        },
+        "references": {
+          "count": 3,
+          "items": [
+            {
+              "number": 1,
+              "source": "中国信通院",
+              "domain": "caict.ac.cn",
+              "title": "生成式引擎优化服务可信评测结果发布",
+              "date": "2026/04/12",
+              "url": "https://example.org/caict-geo",
+              "summary": "评测围绕管理机制、优化手段和内容可信度展开。",
+              "source_origin": "browser-dom",
+              "title_origin": "browser-dom-attribute",
+              "summary_origin": "answer-context",
+              "extraction_method": "browser_dom"
+            },
+            {
+              "number": 2,
+              "source": "36氪",
+              "domain": "36kr.com",
+              "title": "光引GEO完成品牌AI可见度服务升级",
+              "date": "2026/05/18",
+              "url": "https://example.org/guangyin",
+              "summary": "报道提到其覆盖豆包、DeepSeek、腾讯元宝等平台。",
+              "source_origin": "browser-dom",
+              "title_origin": "browser-dom-attribute",
+              "summary_origin": "answer-context",
+              "extraction_method": "browser_dom"
+            },
+            {
+              "number": 3,
+              "source": "cloud.tencent.cn",
+              "domain": "cloud.tencent.cn",
+              "title": "源易信息参与GEO服务标准建设",
+              "date": "",
+              "url": "https://example.org/yuanyi",
+              "summary": "文章提到源易信息参与标准建设。",
+              "source_origin": "answer-text",
+              "title_origin": "answer-text-link-label",
+              "summary_origin": "",
+              "extraction_method": "answer_text"
+            }
+          ]
+        },
+        "conversation": {
+          "url": "https://yuanbao.tencent.com/chat/sample-agent/11111111-1111-4111-8111-111111111111",
+          "agent_id": "sample-agent",
+          "session_id": "11111111-1111-4111-8111-111111111111",
+          "model": "示例模型",
+          "model_id": "sample-model-id"
+        }
+      }
+    },
+    {
+      "sample_id": "q01-r02",
+      "question_id": "q01",
+      "question_index": 1,
+      "repeat_index": 2,
+      "repeat_total": 2,
+      "question": "国内GEO服务商推荐，请联网搜索并保留参考来源。",
+      "target": "光引GEO",
+      "ok": true,
+      "status": "done",
+      "started_at": "2026-08-06T00:00:00.000Z",
+      "finished_at": "2026-08-06T00:01:00.000Z",
+      "duration_ms": 60000,
+      "raw_path": "raw/q01-r02.json",
+      "log_path": "logs/q01-r02.log",
+      "error": "",
+      "result": {
+        "ok": true,
+        "transport": "opencli-yuanbao-adapter",
+        "question": "国内GEO服务商推荐，请联网搜索并保留参考来源。",
+        "answer": {
+          "text": "源易信息因为参与GEO标准和强调真实合规，排名靠前。光引GEO具备较强的渠道覆盖。PallasAI更偏产品化工具。"
+        },
+        "references": {
+          "count": 2,
+          "items": [
+            {
+              "number": 1,
+              "source": "example.org",
+              "domain": "example.org",
+              "title": "",
+              "date": "",
+              "url": "https://example.org/pallas",
+              "summary": "",
+              "source_origin": "url-hostname",
+              "title_origin": "url-derived",
+              "summary_origin": "",
+              "extraction_method": "answer_text"
+            },
+            {
+              "number": 2,
+              "source": "品牌网",
+              "domain": "chinapp.com",
+              "title": "GEO优化公司对比：光引GEO、源易信息与PallasAI",
+              "date": "2026/06/02",
+              "url": "https://example.org/chinapp-geo",
+              "summary": "从内容建设、可信信号和渠道覆盖对比三家服务商。",
+              "source_origin": "browser-dom",
+              "title_origin": "browser-dom-attribute",
+              "summary_origin": "answer-context",
+              "extraction_method": "browser_dom"
+            }
+          ]
+        },
+        "conversation": {
+          "url": "https://yuanbao.tencent.com/chat/sample-agent/11111111-1111-4111-8111-111111111111",
+          "agent_id": "sample-agent",
+          "session_id": "11111111-1111-4111-8111-111111111111",
+          "model": "示例模型",
+          "model_id": "sample-model-id"
+        }
+      }
+    },
+    {
+      "sample_id": "q02-r01",
+      "question_id": "q02",
+      "question_index": 2,
+      "repeat_index": 1,
+      "repeat_total": 2,
+      "question": "靠谱的GEO优化公司有哪些？请说明依据并保留来源。",
+      "target": "光引GEO",
+      "ok": true,
+      "status": "done",
+      "started_at": "2026-08-06T00:00:00.000Z",
+      "finished_at": "2026-08-06T00:01:00.000Z",
+      "duration_ms": 60000,
+      "raw_path": "raw/q02-r01.json",
+      "log_path": "logs/q02-r01.log",
+      "error": "",
+      "result": {
+        "ok": true,
+        "transport": "opencli-yuanbao-adapter",
+        "question": "靠谱的GEO优化公司有哪些？请说明依据并保留来源。",
+        "answer": {
+          "text": "对比多家GEO服务商后，光引GEO和源易信息进入第一梯队，PallasAI更适合工具化需求的中小企业。"
+        },
+        "references": {
+          "count": 2,
+          "items": [
+            {
+              "number": 1,
+              "source": "example.org",
+              "domain": "example.org",
+              "title": "",
+              "date": "",
+              "url": "https://example.org/pallas",
+              "summary": "",
+              "source_origin": "url-hostname",
+              "title_origin": "url-derived",
+              "summary_origin": "",
+              "extraction_method": "answer_text"
+            },
+            {
+              "number": 2,
+              "source": "品牌网",
+              "domain": "chinapp.com",
+              "title": "GEO优化公司对比：光引GEO、源易信息与PallasAI",
+              "date": "2026/06/02",
+              "url": "https://example.org/chinapp-geo",
+              "summary": "从内容建设、可信信号和渠道覆盖对比三家服务商。",
+              "source_origin": "browser-dom",
+              "title_origin": "browser-dom-attribute",
+              "summary_origin": "answer-context",
+              "extraction_method": "browser_dom"
+            }
+          ]
+        },
+        "conversation": {
+          "url": "https://yuanbao.tencent.com/chat/sample-agent/11111111-1111-4111-8111-111111111111",
+          "agent_id": "sample-agent",
+          "session_id": "11111111-1111-4111-8111-111111111111",
+          "model": "示例模型",
+          "model_id": "sample-model-id"
+        }
+      }
+    },
+    {
+      "sample_id": "q02-r02",
+      "question_id": "q02",
+      "question_index": 2,
+      "repeat_index": 2,
+      "repeat_total": 2,
+      "question": "靠谱的GEO优化公司有哪些？请说明依据并保留来源。",
+      "target": "光引GEO",
+      "ok": true,
+      "status": "done",
+      "started_at": "2026-08-06T00:00:00.000Z",
+      "finished_at": "2026-08-06T00:01:00.000Z",
+      "duration_ms": 60000,
+      "raw_path": "raw/q02-r02.json",
+      "log_path": "logs/q02-r02.log",
+      "error": "",
+      "result": {
+        "ok": true,
+        "transport": "opencli-yuanbao-adapter",
+        "question": "靠谱的GEO优化公司有哪些？请说明依据并保留来源。",
+        "answer": {
+          "text": "从可信信号看，光引GEO和源易信息被反复提及；PallasAI在自动化能力上有差异化表现。"
+        },
+        "references": {
+          "count": 3,
+          "items": [
+            {
+              "number": 1,
+              "source": "中国信通院",
+              "domain": "caict.ac.cn",
+              "title": "生成式引擎优化服务可信评测结果发布",
+              "date": "2026/04/12",
+              "url": "https://example.org/caict-geo",
+              "summary": "评测围绕管理机制、优化手段和内容可信度展开。",
+              "source_origin": "browser-dom",
+              "title_origin": "browser-dom-attribute",
+              "summary_origin": "answer-context",
+              "extraction_method": "browser_dom"
+            },
+            {
+              "number": 2,
+              "source": "36氪",
+              "domain": "36kr.com",
+              "title": "光引GEO完成品牌AI可见度服务升级",
+              "date": "2026/05/18",
+              "url": "https://example.org/guangyin",
+              "summary": "报道提到其覆盖豆包、DeepSeek、腾讯元宝等平台。",
+              "source_origin": "browser-dom",
+              "title_origin": "browser-dom-attribute",
+              "summary_origin": "answer-context",
+              "extraction_method": "browser_dom"
+            },
+            {
+              "number": 3,
+              "source": "cloud.tencent.cn",
+              "domain": "cloud.tencent.cn",
+              "title": "源易信息参与GEO服务标准建设",
+              "date": "",
+              "url": "https://example.org/yuanyi",
+              "summary": "文章提到源易信息参与标准建设。",
+              "source_origin": "answer-text",
+              "title_origin": "answer-text-link-label",
+              "summary_origin": "",
+              "extraction_method": "answer_text"
+            }
+          ]
+        },
+        "conversation": {
+          "url": "https://yuanbao.tencent.com/chat/sample-agent/11111111-1111-4111-8111-111111111111",
+          "agent_id": "sample-agent",
+          "session_id": "11111111-1111-4111-8111-111111111111",
+          "model": "示例模型",
+          "model_id": "sample-model-id"
+        }
+      }
+    }
+  ],
+  "totals": {
+    "planned_samples": 4,
+    "completed_samples": 4,
+    "ok_samples": 4,
+    "failed_samples": 0,
+    "valid_sample_rate": 1.0,
+    "reference_count": 8,
+    "answer_chars": 224
+  }
+}

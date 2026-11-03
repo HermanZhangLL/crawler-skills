@@ -1,0 +1,35 @@
+interface:
+  display_name: "Yuanbao Crawler Web"
+  short_description: "Repeat 腾讯元宝 web AI-search crawls and generate raw JSON, structured Markdown/Excel, and target-vs-competitor entity probability reports."
+  default_prompt: "Use $yuanbao-crawler-web when the user provides 腾讯元宝 web AI-search keywords/questions, repeat count, target entity, entity type, OpenCLI profile, and crawl interval preference, then needs a crawl JSON dataset, structured Markdown, structured Excel workbook, and a Kami-styled HTML report covering target-vs-same-type-competitor comparison, mention rate, average mentions, Top 1/Top 3/Top 5 probabilities, sentiment, source/channel/title intent analysis, bilingual summaries, clickable citations with unique compact URL labels, compact domain treemaps, solid color-coded click-to-reveal bubble benchmarks, and GEO recommendations with priority charts, core-metric trend projections, and concrete methods. Ask for the standard inputs if they are missing: keywords, repeat count, target entity, entity type, OpenCLI profile. Optionally accept a Yuanbao 对话分组 name (YUANBAO_GROUP) to move each fresh conversation into that group after share creation. Use random 60-100s by default; offer --safe-random-delay (5-20 minutes) for long real runs. Do not use it for generic web scraping, 腾讯元宝 API-only calls, or one-off answer writing."
+compatibility:
+  canonical_format: "agent-skills"
+  adapter_targets:
+    - "openai"
+    - "claude"
+    - "generic"
+    - "vscode"
+  activation:
+    mode: "manual"
+    paths: []
+  execution:
+    context: "inline"
+    shell: "bash"
+    primary_commands:
+      - "node scripts/preflight.mjs --help"
+      - "node scripts/yuanbao_browser_crawl.mjs --help"
+      - "node scripts/yuanbao_batch_crawl.mjs --help"
+      - "node scripts/yuanbao_share_batch.mjs --help"
+      - "node scripts/analyze_yuanbao_share.mjs --help"
+      - "node scripts/render_yuanbao_field_maps.mjs --help"
+      - "python3 scripts/analyze_yuanbao_results.py --help"
+      - "bash scripts/run-tests.sh"
+  trust:
+    source_tier: "local"
+    remote_inline_execution: "forbid"
+    remote_metadata_policy: "allow-metadata-only"
+  degradation:
+    openai: "metadata-adapter"
+    claude: "neutral-source-plus-adapter"
+    generic: "neutral-source"
+    vscode: "agent-skills-source-with-vscode-notes"

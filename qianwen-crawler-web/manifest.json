@@ -1,0 +1,31 @@
+{
+  "name": "qianwen-crawler-web",
+  "version": "1.0.0",
+  "status": "active",
+  "owner": "Herman",
+  "updated_at": "2026-10-30",
+  "description": "Repeated Qianwen (千问 www.qianwen.com) web question collection with per-question evidence and optional UI grouping.",
+  "target_platforms": ["openai", "claude", "generic"],
+  "factory_components": ["references", "scripts"],
+  "input_files": [
+    "questions.json (required question list)",
+    "required standard inputs: repeat count, target entity, entity type",
+    "optional OpenCLI browser profile",
+    "optional Qianwen group name for UI grouping"
+  ],
+  "output_contract": [
+    "raw/<sample_id>.json per-sample evidence with chat_url link evidence",
+    "qianwen-crawl.json canonical dataset (batch aggregate)",
+    "group.json group enumeration result (authoritative link source)",
+    "<prefix>.csv question-to-link delivery table",
+    "validate.json per-link validation result",
+    "questions-missing.json list of questions needing a re-ask"
+  ],
+  "rollback_boundary": "The skill writes only to the selected run output directory and does not modify the source Qianwen session.",
+  "local_dependencies": [
+    "Node.js 18+",
+    "Python 3.10+ (links table builder)",
+    "OpenCLI CLI 1.8.4+",
+    "OpenCLI Browser Bridge profile with Qianwen login"
+  ]
+}

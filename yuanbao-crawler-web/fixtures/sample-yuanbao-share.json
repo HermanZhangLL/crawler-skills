@@ -1,0 +1,74 @@
+{
+  "schema_version": "yuanbao-crawler-share/v1",
+  "share": {
+    "url": "https://yb.tencent.com/s/sampleShareId",
+    "share_id": "sampleShareId",
+    "internal_id": "00000000000000000000000000000000",
+    "title": "示例问题分享",
+    "share_time_iso": "2026-08-06T01:44:04.000Z",
+    "expire_time_iso": "2027-08-01T01:44:04.000Z",
+    "platform": "WEB",
+    "user_name": "示例用户",
+    "user_avatar": ""
+  },
+  "chat": {
+    "id": "0PNw0000000000000000000000",
+    "agent_id": "naQivTmsDa",
+    "chat_model_id": "hunyuan_gpt_175B_0404",
+    "model_id": "gpt_175B_0404",
+    "internet_search": "openInternetSearch",
+    "internet_flag": 0,
+    "created_at_iso": "2026-08-06T01:43:27.000Z",
+    "first_replied_at_iso": "2026-08-06T01:43:27.000Z",
+    "last_replied_at_iso": "2026-08-06T01:43:56.000Z"
+  },
+  "question": {
+    "text": "示例问题：推荐个保定东边品质好，性价比高的改善楼盘"
+  },
+  "answer": {
+    "text": "示例回答：综合公开来源，光引GEO 和 和光书苑 出现在推荐前列。[citation:1][citation:2]",
+    "char_count": 40
+  },
+  "references": [
+    {
+      "index": 1,
+      "doc_id": "doc1",
+      "title": "示例来源一",
+      "url": "https://example.org/source-one",
+      "source_type": "thirdparty",
+      "source_name": "",
+      "web_site_name": "示例站点",
+      "quote": "示例摘要片段一。"
+    },
+    {
+      "index": 2,
+      "doc_id": "doc2",
+      "title": "示例公众号文章",
+      "url": "https://example.org/source-two",
+      "source_type": "mp",
+      "source_name": "公众号",
+      "web_site_name": "示例公众号",
+      "quote": "示例摘要片段二。"
+    }
+  ],
+  "media": [
+    {
+      "description": "示例楼盘实景图",
+      "jump_url": "https://example.org/media",
+      "url": "https://example.org/media.jpg"
+    }
+  ],
+  "counts": {
+    "messages": 2,
+    "references": 2,
+    "media": 1,
+    "unique_domains": 1,
+    "domains": [
+      "example.org"
+    ],
+    "source_types": {
+      "thirdparty": 1,
+      "mp": 1
+    }
+  }
+}

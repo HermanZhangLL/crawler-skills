@@ -1,0 +1,44 @@
+{
+  "skill_id": "yuanbao-crawler-web",
+  "required_files": [
+    "SKILL.md",
+    "README.md",
+    "agents/interface.yaml",
+    "evals/trigger_cases.json",
+    "evals/expected_artifacts.json",
+    "templates/brief-template.md",
+    "scripts/preflight.mjs",
+    "scripts/yuanbao_batch_crawl.mjs",
+    "scripts/yuanbao_browser_crawl.mjs",
+    "scripts/yuanbao_share_batch.mjs",
+    "scripts/analyze_yuanbao_share.mjs",
+    "scripts/render_yuanbao_field_maps.mjs",
+    "scripts/lib/yuanbao-field-map.mjs",
+    "scripts/test_yuanbao_browser_crawl.mjs",
+    "scripts/run-tests.sh",
+    "scripts/run-tests.ps1",
+    "scripts/analyze_yuanbao_results.py"
+  ],
+  "public_examples": [],
+  "primary_outputs": [
+    "yuanbao-crawl.json",
+    "field-maps/<question_id>-data-map.html per-question data field maps",
+    "share.url / share_id per sample (auto public share creation)",
+    "summary.json",
+    "structured-data.md",
+    "structured-data.xlsx",
+    "report.html",
+    "raw-json-and-log-evidence"
+  ],
+  "quality_expectations": [
+    "must preserve raw 腾讯元宝 answers, source titles, URLs, conversation URLs, share URLs, and per-sample logs",
+    "must auto-create a public share link after each answer by default and parse the public page payload",
+    "must support optional group placement: when YUANBAO_GROUP is set, move each fresh conversation into that 元宝对话分组 after share creation and record group_move in raw JSON",
+    "must treat short alphanumeric conversation ids (e.g., 0PiSKR4x5Wa) as valid and not require 36-char UUID format",
+    "must separate planned, completed, valid, failed, and pending samples",
+    "must require target entity and entity type for standard reports",
+    "must keep same-type competitor comparison auditable through aliases and entity candidates",
+    "must label probability metrics as repeated-sample estimates rather than ground truth",
+    "must not bypass login, CAPTCHA, throttling, or 腾讯元宝 platform controls"
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "name": "deepseek-crawler-web",
+  "version": "1.0.0",
+  "owner": "Herman",
+  "updated_at": "2026-10-30",
+  "status": "active",
+  "maturity_tier": "production",
+  "lifecycle_stage": "production",
+  "context_budget_tier": "production",
+  "review_cadence": "monthly",
+  "skill_archetype": "production",
+  "target_platforms": [
+    "openai",
+    "claude",
+    "generic",
+    "agent-skills-compatible",
+    "vscode"
+  ],
+  "factory_components": [
+    "references",
+    "scripts",
+    "fixtures",
+    "templates",
+    "evals"
+  ],
+  "input_files": [
+    "questions.txt or questions.json",
+    "required standard inputs: repeat count, target entity, and entity type",
+    "optional brands.txt alias/competitor file",
+    "optional existing deepseek-crawl.json"
+  ],
+  "output_contract": [
+    "deepseek-crawl.json canonical evidence dataset",
+    "summary.json analysis metrics with target entity recognition and same-type competitor comparison",
+    "structured-data.md Markdown export of cleaned structured fields and analysis tables",
+    "structured-data.xlsx Excel workbook with the same structured sheets as the Markdown export",
+    "report.html Kami-styled visual report with overview, directory, metric explanations, entity classification, probability tables, target-vs-competitor module, clickable citations with unique compact URL labels, GEO trend projections, and capped detail lists",
+    "raw/*.json and logs/*.log per-sample evidence, including a structure fingerprint block describing how share payload fields were discovered",
+    "optional structure probe report from scripts/deepseek_share_probe.mjs",
+    "optional deepseek-samples.csv and deepseek-references.csv structured data tables",
+    "optional deepseek-samples.db SQLite data table when node:sqlite is available",
+    "optional store/field-maps/<sample_id>.html per-sample data field maps"
+  ],
+  "rollback_boundary": "The skill writes only to the selected run output directory and does not modify the source DeepSeek crawler project.",
+  "local_dependencies": [
+    "Node.js 21+ for fresh crawling; Node.js 18+ for analysis-only usage",
+    "Python 3.10+",
+    "OpenCLI CLI 1.8.4+",
+    "OpenCLI Browser Bridge connected profile",
+    "Logged-in DeepSeek web session",
+    "DeepSeek browser crawler script, defaulting to bundled scripts/geo-deepseek-browser-direct.mjs"
+  ]
+}
